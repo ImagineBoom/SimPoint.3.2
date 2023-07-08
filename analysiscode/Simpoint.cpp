@@ -756,6 +756,12 @@ void Simpoint::doClustering() {
     vector<Dataset *> initSeedInitialCenters(options.numInitSeeds),
                       initSeedFinalCenters(options.numInitSeeds);
     vector<double> initSeedBicScores(options.numInitSeeds);
+    for (unsigned int runNumber = 0; runNumber < options.kValues.size(); runNumber++) {
+        Logger::log() << endl
+            << "--------------------------------------------------------------\n"
+            << "Run value " << options.kValues[runNumber]<<endl
+            << "--------------------------------------------------------------\n";
+    }
 
     for (unsigned int runNumber = 0; runNumber < options.kValues.size(); runNumber++) {
         Logger::log() << endl
@@ -785,6 +791,12 @@ void Simpoint::doClustering() {
 
             int iteration_limit = options.numKMeansIterations;
             if (options.useNoIterationLimit) { iteration_limit = INT_MAX; }
+            
+            // Logger::log() << endl
+            //     << "--------------------------------------------------------------\n"
+            //     << "iteration_limit " << iteration_limit <<endl
+            //     << "--------------------------------------------------------------\n";
+
             KMeans::runKMeans(*sampledDataset, initSeedFinalCenters[initSeedRun], 
                     iteration_limit);
 

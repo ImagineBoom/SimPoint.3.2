@@ -114,8 +114,8 @@ void KMeans::initializeFurthestFirst(int randSeed, const Dataset &data,
 }
 
 
-void KMeans::runKMeans(const Dataset &data, Dataset *centers,
-                       int maxIterations) {
+void KMeans::runKMeans(const Dataset &data, Dataset *centers, int maxIterations) {
+    // centers表示聚类中心
     Dataset tempCenters(*centers);
     Dataset *newCenters = &tempCenters, *oldCenters = centers;
 
